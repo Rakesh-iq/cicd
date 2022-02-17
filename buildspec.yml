@@ -8,4 +8,4 @@ phases:
       - npm install
   build:
     commands:
-      - echo "This is CI/CD Test"
+      - echo "This is CI/CD Sample Project"
