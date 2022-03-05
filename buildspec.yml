@@ -1,11 +1,17 @@
 
-   
+  
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - npm install
+  # install:
+  #   commands:
+  #     - npm install # dev-s3-bucket-store-cft-templates 
   build:
     commands:
-      - echo "This is CI/CD Sample Project"
+      - echo "Create S3 Bucket"
+      - aws s3api create-bucket \
+        --bucket dev-s3-bucket-store-cft-templates \
+        --region us-east-1
+      - echo "copy CFT Templates as objects to Bucket"
+      - aws s3 sync $CODEBUILD_SRC_DIR/cloudformation/ dev-s3-bucket-store-cft-templates --delete
+
