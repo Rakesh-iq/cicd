@@ -1,0 +1,38 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Airflow
+
+Parameters:
+  BucketName:
+    Description: Provide Bucket Name
+    Type: String
+    Default: dev-s3-airflow-service
+
+Resources:
+  S3Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        BucketName: !Ref BucketName
+      TemplateURL: https://iq-airflow-cfn-templates.s3.amazonaws.com/dev_infra_s3_cft.yml
+      TimeoutInMinutes: '5'
+
+  AirflowStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        BucketARN: !GetAtt S3Stack.Outputs.BucketARN
+      TemplateURL: https://iq-airflow-cfn-templates.s3.amazonaws.com/dev_infra_airflow_cft.yml
+      TimeoutInMinutes: '50'
+
+Outputs:
+  AccountId:
+    Value: !Ref AWS::AccountId
+  StackRef:
+    Value: !Ref S3Stack
+  BucketName:
+    Value: !GetAtt S3Stack.Outputs.BucketName 
+  BucketARN:
+    Value: !GetAtt S3Stack.Outputs.BucketARN 
+    Export: 
+        Name: "BucketARN"
