@@ -12,6 +12,8 @@ phases:
       - aws s3api create-bucket \
         --bucket dev-s3-bucket-store-cft-templates \
         --region us-east-1
+      - ls $CODEBUILD_SRC_DIR
+      - ls $CODEBUILD_SRC_DIR/cloudformation
       - echo "copy CFT Templates as objects to Bucket"
       - aws s3 sync $CODEBUILD_SRC_DIR/cloudformation/ dev-s3-bucket-store-cft-templates --delete
 
