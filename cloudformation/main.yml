@@ -14,7 +14,8 @@ Resources:
     Properties:
       Parameters:
         BucketName: !Ref BucketName
-      TemplateURL: https://dev-s3-bucket-store-cft-templates.s3.amazonaws.com/dev_infra_s3_cft.yml
+      # TemplateURL: https://dev-s3-bucket-store-cft-templates.s3.amazonaws.com/dev_infra_s3_cft.yml
+      TemplateURL: https://CFT_BUCKET.s3.amazonaws.com/dev_infra_s3_cft.yml
       TimeoutInMinutes: '5'
 
   AirflowStack:
@@ -22,7 +23,8 @@ Resources:
     Properties:
       Parameters:
         BucketARN: !GetAtt S3Stack.Outputs.BucketARN
-      TemplateURL: https://dev-s3-bucket-store-cft-templates.s3.amazonaws.com/dev_infra_airflow_cft.yml
+      # TemplateURL: https://dev-s3-bucket-store-cft-templates.s3.amazonaws.com/dev_infra_airflow_cft.yml
+      TemplateURL: https://CFT_BUCKET.s3.amazonaws.com/dev_infra_airflow_cft.yml
       TimeoutInMinutes: '50'
 
 Outputs:
