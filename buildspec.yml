@@ -15,4 +15,5 @@ phases:
       - echo "copy CFT Templates as objects to Bucket"
       - sed -i 's/CFT_BUCKET/'"$CFT_BUCKET"'/g' $CODEBUILD_SRC_DIR/cloudformation/main.yml
       - aws s3 sync $CODEBUILD_SRC_DIR/cloudformation/ s3://$CFT_BUCKET --delete
+      - cat $CODEBUILD_SRC_DIR/cloudformation/main.yml 
 
