@@ -15,14 +15,6 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-  NewObject:
-    Type: AWS::S3::Object
-    Properties:
-      Target:
-        Bucket: !Ref BucketName
-        Key: dags/README.md
-      Body: |
-        # My text file
 
 Outputs: 
   BucketName:
