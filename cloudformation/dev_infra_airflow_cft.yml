@@ -147,8 +147,8 @@ Resources:
               - "s3:GetBucket*"
               - "s3:List*"
             Resource:
-              -  !Ref BucketARN
-              -  !Ref BucketARN
+              -  !Sub ${BucketARN}/*
+              -  !Sub ${BucketARN}
           - Effect: Allow
             Action:
               - logs:DescribeLogGroups
