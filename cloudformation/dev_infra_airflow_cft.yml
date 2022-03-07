@@ -60,7 +60,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-MwaaEnvironment"
       SourceBucketArn: !Ref BucketARN
       ExecutionRoleArn: !GetAtt MwaaExecutionRole.Arn
-      DagS3Path: /
+      DagS3Path: airflow/dags
       NetworkConfiguration:
         SecurityGroupIds:
           - !GetAtt SecurityGroup.GroupId
