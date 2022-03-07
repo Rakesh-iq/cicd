@@ -138,8 +138,8 @@ Resources:
           - Effect: Deny
             Action: s3:ListAllMyBuckets
             Resource:
-              - !Ref BucketARN
-              - !Ref BucketARN
+              - !Sub ${BucketARN}/*
+              - !Sub ${BucketARN}
 
           - Effect: Allow
             Action:
