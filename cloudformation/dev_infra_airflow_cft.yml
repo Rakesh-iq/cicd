@@ -41,7 +41,7 @@ Parameters:
         - prod
 
 Mappings:
-    VPCDetails:
+    env:
         "799138687874": # Dev Account
             VpcId: vpc-00a224ef15dab2af0
             PrivateSubnet1: subnet-004696b1d7c69176c
@@ -65,8 +65,8 @@ Resources:
         SecurityGroupIds:
           - !GetAtt SecurityGroup.GroupId
         SubnetIds:
-          - !FindInMap [VPCDetails, !Ref AWS::AccountId, PrivateSubnet1]
-          - !FindInMap [VPCDetails, !Ref AWS::AccountId, PrivateSubne2]
+          - !FindInMap [env, !Ref AWS::AccountId, PrivateSubnet1]
+          - !FindInMap [env, !Ref AWS::AccountId, PrivateSubne2]
       WebserverAccessMode: PUBLIC_ONLY
       MaxWorkers: !Ref MaxWorkerNodes
       LoggingConfiguration:
@@ -89,7 +89,7 @@ Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      VpcId: !FindInMap [VPCDetails, !Ref AWS::AccountId, VpcId]
+      VpcId: !FindInMap [env, !Ref AWS::AccountId, VpcId]
       GroupDescription: !Sub "Security Group for Amazon MWAA Environment ${AWS::StackName}-MwaaEnvironment"
       GroupName: !Sub "airflow-security-group-${AWS::StackName}-MwaaEnvironment"
   
