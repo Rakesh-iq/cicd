@@ -6,7 +6,7 @@ Parameters:
   BucketName:
     Description: Provide Bucket Name
     Type: String
-    Default: dev-s3-airflow-service
+    Default: dev-airflow-store-dags
 
 Resources:
   S3Stack:
