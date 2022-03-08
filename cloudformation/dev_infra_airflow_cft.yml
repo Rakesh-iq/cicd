@@ -67,7 +67,7 @@ Resources:
         SubnetIds:
           - !FindInMap [env, !Ref AWS::AccountId, PrivateSubnet1]
           - !FindInMap [env, !Ref AWS::AccountId, PrivateSubne2]
-      WebserverAccessMode: PRIVATE_ONLY
+      WebserverAccessMode: PUBLIC_ONLY
       MaxWorkers: !Ref MaxWorkerNodes
       LoggingConfiguration:
         DagProcessingLogs:
